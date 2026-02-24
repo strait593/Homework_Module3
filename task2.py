@@ -2,6 +2,13 @@ import random
 
 def get_numbers_ticket(min,max,quantity):
 
+    if min < 0 or max < 0 or quantity < 0:
+        return []
+    if min > max:
+        return []
+    if (max - min) < quantity:
+        return []
+
     numbers = []
 
     for i in range(min,max):
@@ -12,6 +19,6 @@ def get_numbers_ticket(min,max,quantity):
     winning_numbers = random.sample(numbers, k=quantity)
     winning_numbers_list.append(winning_numbers)
 
-    return print(f"The winning numbers are: {winning_numbers}")
+    return f"The winning numbers are: {sorted(winning_numbers)}"
 
-get_numbers_ticket(1,1001, 10)
+print(get_numbers_ticket(10,4, 5))

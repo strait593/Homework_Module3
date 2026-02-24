@@ -2,22 +2,9 @@ import re
 
 phone_numbers = ["    +38(050)123-32-34", "     0503451234","(050)8889900","38050-111-22-22","38050 111 22 11   "]
 
-def normalize_numbers(numbers_list):
-
-    normalized_list = []
+def normalize_numbers(phone_number:str):
+    normalize_number = phone_number.strip().replace("(", "").replace(")","").replace("+","").replace(" ","").replace("-","").replace("380","")
     
-    for num in phone_numbers:
+    return "+380" + normalize_number
 
-        normalized_numbers = num.replace(" ", "").replace("(", "").replace(")", "").replace("-", "").replace("+", "").replace("380", '')
-
-        if normalized_numbers.startswith('0'):
-
-            normalized_numbers = normalized_numbers.removeprefix('0')
-
-
-        normalized_list.append("+380" + normalized_numbers)
-
-
-    return normalized_list
-
-normalize_numbers(phone_numbers)
+print(normalize_numbers())
