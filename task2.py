@@ -8,7 +8,7 @@ def get_numbers_ticket(min,max,quantity):
         return []
     if (max - min) < quantity:
         return []
-    #store randomly generated numbers in order to pick random quantity of winning tickets
+    #Store randomly generated numbers in order to pick random quantity of winning tickets
     numbers = []
 
     for i in range(min,max):
@@ -19,8 +19,10 @@ def get_numbers_ticket(min,max,quantity):
     winning_numbers = random.sample(numbers, k=quantity)
     for i in winning_numbers:
         winning_numbers_list.append(i)
+    
+    distinct_winning_numbers = list(dict.fromkeys(winning_numbers_list))
 
-    return winning_numbers_list
+    return distinct_winning_numbers
 
-lottery_numbers = get_numbers_ticket(1000,1200,3)  #get_numbers_ticket(minimal_number, maximum_number, quantity_of_tickets)
+lottery_numbers = get_numbers_ticket(1000,1200,3)
 print(f"Your winning lottery numbers are: {sorted(lottery_numbers)}")

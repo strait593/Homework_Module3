@@ -1,12 +1,23 @@
 from datetime import datetime
 
+def get_days_from_today(date_string: str) -> int:
+    today = datetime.today()
+    parsed = None
 
-def get_days_from_today(date: str) -> int:
-    
-    given_date = datetime.strptime(date, "%Y-%m-%d").date()
-    today = datetime.now().date()
-    delta = today - given_date
-    return delta.days
+    #Checking for a correct format
+    for fmt in ("%Y-%m-%d", "%d.%m.%Y"):
+        try:
+            parsed = datetime.strptime(date_string, fmt)
+            break
+        except ValueError:
+            continue
+            
+    if parsed is None:
+        raise ValueError(f"date '{date_string}' is not in a supported format")
 
-days_difference = get_days_from_today("2026-10-09")
-print(days_difference," days")
+    difference = today - parsed
+
+    return difference.days
+
+days_difference = get_days_from_today("13.01.2027")
+print(f"{days_difference} days")
