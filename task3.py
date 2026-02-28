@@ -17,3 +17,6 @@ def normalize_phone(phone_number:str):
 
 print(normalize_phone("067\\t123 4567"))
 print(normalize_phone("(095) 234-5678\\n"))
+
+sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
+print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)
